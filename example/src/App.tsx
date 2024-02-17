@@ -6,7 +6,7 @@ import { Model3dView } from 'react-native-model3d';
 export default function App() {
   return (
     <View style={styles.container}>
-      <Model3dView color="#32a852" style={styles.box} />
+      <Model3dView color="#faa" style={styles.box} />
     </View>
   );
 }

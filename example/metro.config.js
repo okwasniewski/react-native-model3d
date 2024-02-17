@@ -3,6 +3,7 @@ const path = require('path');
 const escape = require('escape-string-regexp');
 const exclusionList = require('metro-config/src/defaults/exclusionList');
 const pak = require('../package.json');
+const { getPlatformResolver } = require('@callstack/out-of-tree-platforms');
 
 const root = path.resolve(__dirname, '..');
 const modules = Object.keys({ ...pak.peerDependencies });
@@ -30,6 +31,9 @@ const config = {
       acc[name] = path.join(__dirname, 'node_modules', name);
       return acc;
     }, {}),
+    resolveRequest: getPlatformResolver({
+      platformNameMap: { visionos: '@callstack/react-native-visionos' },
+    }),
   },
 
   transformer: {
