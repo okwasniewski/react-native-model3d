@@ -13,6 +13,8 @@
 		767CEBBC2B582F6B000139AD /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 767CEBBB2B582F6B000139AD /* AppDelegate.swift */; };
 		767CEBBE2B582F78000139AD /* App.swift in Sources */ = {isa = PBXBuildFile; fileRef = 767CEBBD2B582F78000139AD /* App.swift */; };
 		7699B88040F8A987B510C191 /* libPods-Model3dExample-Model3dExampleTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 19F6CBCC0A4E27FBF8BF4A61 /* libPods-Model3dExample-Model3dExampleTests.a */; };
+		76A1715A2B838CB2002430D2 /* pancakes.usdz in Resources */ = {isa = PBXBuildFile; fileRef = 76A171592B838CB2002430D2 /* pancakes.usdz */; };
+		76A171632B838D87002430D2 /* tv_retro.usdz in Resources */ = {isa = PBXBuildFile; fileRef = 76A171622B838D87002430D2 /* tv_retro.usdz */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -39,6 +41,8 @@
 		5DCACB8F33CDC322A6C60F78 /* libPods-Model3dExample.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Model3dExample.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		767CEBBB2B582F6B000139AD /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AppDelegate.swift; path = Model3dExample/AppDelegate.swift; sourceTree = "<group>"; };
 		767CEBBD2B582F78000139AD /* App.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = App.swift; path = Model3dExample/App.swift; sourceTree = "<group>"; };
+		76A171592B838CB2002430D2 /* pancakes.usdz */ = {isa = PBXFileReference; lastKnownFileType = file.usdz; path = pancakes.usdz; sourceTree = "<group>"; };
+		76A171622B838D87002430D2 /* tv_retro.usdz */ = {isa = PBXFileReference; lastKnownFileType = file.usdz; path = tv_retro.usdz; sourceTree = "<group>"; };
 		89C6BE57DB24E9ADA2F236DE /* Pods-Model3dExample-Model3dExampleTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Model3dExample-Model3dExampleTests.release.xcconfig"; path = "Target Support Files/Pods-Model3dExample-Model3dExampleTests/Pods-Model3dExample-Model3dExampleTests.release.xcconfig"; sourceTree = "<group>"; };
 		ED297162215061F000B7C4FE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = System/Library/Frameworks/JavaScriptCore.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
@@ -83,6 +87,7 @@
 		13B07FAE1A68108700A75B9A /* Model3dExample */ = {
 			isa = PBXGroup;
 			children = (
+				76A171612B838D67002430D2 /* Models */,
 				767CEBBB2B582F6B000139AD /* AppDelegate.swift */,
 				767CEBBD2B582F78000139AD /* App.swift */,
 				13B07FB51A68108700A75B9A /* Images.xcassets */,
@@ -99,6 +104,15 @@
 				19F6CBCC0A4E27FBF8BF4A61 /* libPods-Model3dExample-Model3dExampleTests.a */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		76A171612B838D67002430D2 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				76A171622B838D87002430D2 /* tv_retro.usdz */,
+				76A171592B838CB2002430D2 /* pancakes.usdz */,
+			);
+			name = Models;
 			sourceTree = "<group>";
 		};
 		832341AE1AAA6A7D00B99B32 /* Libraries */ = {
@@ -236,7 +250,9 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				76A171632B838D87002430D2 /* tv_retro.usdz in Resources */,
 				13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */,
+				76A1715A2B838CB2002430D2 /* pancakes.usdz in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -586,10 +602,7 @@
 					"-DFOLLY_CFG_NO_COROUTINES=1",
 					"-DFOLLY_HAVE_CLOCK_GETTIME=1",
 				);
-				OTHER_LDFLAGS = (
-					"$(inherited)",
-					" ",
-				);
+				OTHER_LDFLAGS = "$(inherited)  ";
 				REACT_NATIVE_PATH = "${PODS_ROOT}/../../node_modules/@callstack/react-native-visionos";
 				SDKROOT = iphoneos;
 				USE_HERMES = true;
@@ -658,10 +671,7 @@
 					"-DFOLLY_CFG_NO_COROUTINES=1",
 					"-DFOLLY_HAVE_CLOCK_GETTIME=1",
 				);
-				OTHER_LDFLAGS = (
-					"$(inherited)",
-					" ",
-				);
+				OTHER_LDFLAGS = "$(inherited)  ";
 				REACT_NATIVE_PATH = "${PODS_ROOT}/../../node_modules/@callstack/react-native-visionos";
 				SDKROOT = iphoneos;
 				USE_HERMES = true;
