@@ -46,19 +46,16 @@ export default function App() {
   });
   return (
     <GestureHandlerRootView style={styles.container}>
-      <Text style={{ fontSize: 30, color: 'white', fontWeight: 'bold' }}>
-        React Native Model3D
-      </Text>
+      <Text style={styles.title}>React Native Model3D</Text>
       <GestureDetector gesture={pan}>
         <AnimatedModel3DView
-          source={{ uri: 'pancakes.usdz' }}
+          source="pancakes.usdz"
           style={[rotationStyle, styles.box]}
         />
       </GestureDetector>
       <AnimatedModel3DView
-        source={{
-          uri: 'https://developer.apple.com/augmented-reality/quick-look/models/stratocaster/fender_stratocaster.usdz',
-        }}
+        source="https://developer.apple.com/augmented-reality/quick-look/models/stratocaster/fender_stratocaster.usdz"
+        aspectRatio="fit"
         style={[rotationStyle, styles.box]}
       />
       <View style={{ flexDirection: 'row' }}>
@@ -96,6 +93,11 @@ export default function App() {
 }
 
 const styles = StyleSheet.create({
+  title: {
+    fontSize: 30,
+    color: 'white',
+    fontWeight: 'bold',
+  },
   container: {
     flex: 1,
     alignItems: 'center',

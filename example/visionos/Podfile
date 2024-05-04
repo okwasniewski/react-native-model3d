@@ -8,7 +8,6 @@ require Pod::Executable.execute_command('node', ['-p',
 platform :visionos, min_visionos_version_supported
 prepare_react_native_project!
 
-use_frameworks! :linkage => :static
 
 target 'Model3dExample' do
   config = use_native_modules!

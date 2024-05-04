@@ -3,6 +3,8 @@ import RealityKit
 import Observation
 import React
 
+#if os(visionOS)
+
 @objc public class Model3DView: UIView {
   private var props = Model3DViewProps(url: nil)
   
@@ -10,13 +12,13 @@ import React
     UIHostingController(rootView: ModelView().environment(props))
   }
   
-  @objc var source: RCTImageSource? = nil {
+  @objc public var source: String = "" {
     didSet {
-      props.url = source?.request.url
+      props.url = source
     }
   }
   
-  @objc var aspectRatio: NSString? = nil {
+  @objc public var aspectRatio: NSString? = nil {
     didSet {
       props.aspectRatio = aspectRatio
     }
@@ -41,5 +43,7 @@ import React
     fatalError("init(coder:) has not been implemented")
   }
 }
+
+#endif
 
 

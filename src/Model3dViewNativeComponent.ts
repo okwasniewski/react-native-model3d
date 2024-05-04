@@ -3,7 +3,7 @@ import type { ViewProps } from 'react-native';
 import type { WithDefault } from 'react-native/Libraries/Types/CodegenTypes';
 
 interface NativeProps extends ViewProps {
-  source?: { uri: string };
+  source?: string;
   aspectRatio?: WithDefault<'fit' | 'fill', 'fit'>;
 }
 
