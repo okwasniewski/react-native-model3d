@@ -1,7 +1,9 @@
 #import <React/RCTViewManager.h>
 #import <React/RCTUIManager.h>
+#import <React/UIView+React.h>
 #import "RCTBridge.h"
-#import "Utils.h"
+#import "react_native_model3d-Swift.h"
+
 
 @interface Model3dViewManager : RCTViewManager
 @end
@@ -12,12 +14,14 @@ RCT_EXPORT_MODULE(Model3dView)
 
 - (UIView *)view
 {
+#if TARGET_OS_VISION
+  return [[Model3DView alloc] init];
+#else
   return [[UIView alloc] init];
+#endif
 }
 
-RCT_CUSTOM_VIEW_PROPERTY(color, NSString, UIView)
-{
-  [view setBackgroundColor: [Utils hexStringToColor:json]];
-}
+RCT_EXPORT_VIEW_PROPERTY(source, NSString)
+RCT_EXPORT_VIEW_PROPERTY(aspectRatio, NSString)
 
 @end

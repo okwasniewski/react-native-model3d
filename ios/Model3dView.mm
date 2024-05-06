@@ -7,7 +7,9 @@
 #import <react/renderer/components/RNModel3dViewSpec/RCTComponentViewHelpers.h>
 
 #import "RCTFabricComponentsPlugins.h"
+#import "react_native_model3d-Swift.h"
 #import "Utils.h"
+
 
 using namespace facebook::react;
 
@@ -16,7 +18,11 @@ using namespace facebook::react;
 @end
 
 @implementation Model3dView {
-    UIView * _view;
+#if TARGET_OS_VISION
+  Model3DView* _view;
+#else
+  UIView* _view;
+#endif
 }
 
 + (ComponentDescriptorProvider)componentDescriptorProvider
@@ -30,7 +36,11 @@ using namespace facebook::react;
     static const auto defaultProps = std::make_shared<const Model3dViewProps>();
     _props = defaultProps;
 
+#if TARGET_OS_VISION
+    _view = [[Model3DView alloc] init];
+#else
     _view = [[UIView alloc] init];
+#endif
 
     self.contentView = _view;
   }
@@ -40,15 +50,20 @@ using namespace facebook::react;
 
 - (void)updateProps:(Props::Shared const &)props oldProps:(Props::Shared const &)oldProps
 {
-    const auto &oldViewProps = *std::static_pointer_cast<Model3dViewProps const>(_props);
-    const auto &newViewProps = *std::static_pointer_cast<Model3dViewProps const>(props);
-
-    if (oldViewProps.color != newViewProps.color) {
-        NSString * colorToConvert = [[NSString alloc] initWithUTF8String: newViewProps.color.c_str()];
-        [_view setBackgroundColor: [Utils hexStringToColor:colorToConvert]];
-    }
-
-    [super updateProps:props oldProps:oldProps];
+  const auto &oldViewProps = *std::static_pointer_cast<Model3dViewProps const>(_props);
+  const auto &newViewProps = *std::static_pointer_cast<Model3dViewProps const>(props);
+ 
+#if TARGET_OS_VISION
+  if (oldViewProps.source != newViewProps.source) {
+    _view.source = [NSString stringWithCString:newViewProps.source.c_str() encoding:kCFStringEncodingUTF8];
+  }
+  
+  if (oldViewProps.aspectRatio != newViewProps.aspectRatio) {
+    _view.aspectRatio = [NSString stringWithCString:toString(newViewProps.aspectRatio).c_str() encoding:kCFStringEncodingUTF8];
+  }
+#endif
+  
+  [super updateProps:props oldProps:oldProps];
 }
 
 Class<RCTComponentViewProtocol> Model3dViewCls(void)
