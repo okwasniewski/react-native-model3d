@@ -2,6 +2,8 @@
 
 Render 3D models in visionOS apps
 
+![Screenshot](https://github.com/okwasniewski/react-native-model3d/assets/52801365/bf5d7800-2884-4b78-8f76-7b96b8fab080)
+
 ## Installation
 
 ```sh
