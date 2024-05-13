@@ -1,10 +1,12 @@
 import SwiftUI
 import RealityKit
 import Observation
+import React
 
 class Model3DViewProps: ObservableObject {
   @Published var url: String?
   @Published var aspectRatio: NSString?
+  @Published var onLoad: RCTDirectEventBlock?
 
   init(url: String?) {
     self.url = url
@@ -20,15 +22,20 @@ class Model3DViewProps: ObservableObject {
 }
 
 struct ModelView: View {
+  var delegate: Model3dViewDelegate?
   @EnvironmentObject private var props: Model3DViewProps
 
-  
   var body: some View {
     if let url = props.url {
         Model3D(maybeURL: url) { model in
           model
             .resizable()
             .aspectRatio(contentMode: props.convertAspectRatio(aspectRatio: props.aspectRatio))
+            .onAppear {
+              // TODO: Find a way to call this only once
+              delegate?.onLoad()
+              props.onLoad?([:])
+            }
         } placeholder: {
           ProgressView()
         }

@@ -8,10 +8,19 @@ export default function App() {
     <View style={styles.container}>
       <Text style={styles.title}>React Native Model3D</Text>
       <View style={styles.innerContainer}>
-        <Model3dView source="tv_retro" style={styles.box} />
+        <Model3dView
+          source="tv_retro"
+          style={styles.box}
+          onLoad={() => {
+            console.log('Model loaded from local file');
+          }}
+        />
         <Model3dView
           source="https://developer.apple.com/augmented-reality/quick-look/models/stratocaster/fender_stratocaster.usdz"
           style={styles.box}
+          onLoad={() => {
+            console.log('Model loaded from URL');
+          }}
         />
       </View>
     </View>
