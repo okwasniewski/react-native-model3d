@@ -15,7 +15,7 @@ RCT_EXPORT_MODULE(Model3dView)
 - (UIView *)view
 {
 #if TARGET_OS_VISION
-  return [[Model3DView alloc] init];
+  return [[Model3DView alloc] initWithDelegate:nil];
 #else
   return [[UIView alloc] init];
 #endif
@@ -23,5 +23,6 @@ RCT_EXPORT_MODULE(Model3dView)
 
 RCT_EXPORT_VIEW_PROPERTY(source, NSString)
 RCT_EXPORT_VIEW_PROPERTY(aspectRatio, NSString)
+RCT_EXPORT_VIEW_PROPERTY(onLoad, RCTDirectEventBlock)
 
 @end

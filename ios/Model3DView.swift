@@ -3,12 +3,18 @@ import RealityKit
 import Observation
 import React
 
+@objc public protocol Model3dViewDelegate {
+  func onLoad() 
+}
+
+// RCTDirectEventBlock is not defined for new architecture. Unfortunately RCT_NEW_ARCH_ENABLED flag is not passed to Swift.
+public typealias RCTDirectEventBlock = ([AnyHashable : Any]?) -> Void
+
 @objc public class Model3DView: UIView {
+  private var delegate: Model3dViewDelegate?
   private var props = Model3DViewProps(url: nil)
 
-  private var modelView: UIViewController {
-    UIHostingController(rootView: ModelView().environmentObject(props))
-  }
+  private var modelView: UIViewController?
 
   @objc public var source: String = "" {
     didSet {
@@ -21,11 +27,25 @@ import React
       props.aspectRatio = aspectRatio
     }
   }
-
+  
+  @objc public var onLoad: RCTDirectEventBlock? = nil {
+    didSet {
+      props.onLoad = onLoad
+    }
+  }
+ 
   override init(frame: CGRect) {
     super.init(frame: frame)
+  }
+  
+  @objc public convenience init(withDelegate delegate: Model3dViewDelegate?) {
+    self.init(frame: .zero)
+    self.delegate = delegate
+    modelView = UIHostingController(
+      rootView: ModelView(delegate: delegate).environmentObject(props)
+    )
     self.reactAddController(toClosestParent: modelView)
-    if let view = modelView.view {
+    if let modelView, let view = modelView.view {
       view.translatesAutoresizingMaskIntoConstraints = false
       self.addSubview(view)
       NSLayoutConstraint.activate([

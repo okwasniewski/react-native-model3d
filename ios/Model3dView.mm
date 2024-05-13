@@ -13,7 +13,7 @@
 
 using namespace facebook::react;
 
-@interface Model3dView () <RCTModel3dViewViewProtocol>
+@interface Model3dView () <RCTModel3dViewViewProtocol, Model3dViewDelegate>
 
 @end
 
@@ -27,7 +27,7 @@ using namespace facebook::react;
 
 + (ComponentDescriptorProvider)componentDescriptorProvider
 {
-    return concreteComponentDescriptorProvider<Model3dViewComponentDescriptor>();
+  return concreteComponentDescriptorProvider<Model3dViewComponentDescriptor>();
 }
 
 - (instancetype)initWithFrame:(CGRect)frame
@@ -35,16 +35,16 @@ using namespace facebook::react;
   if (self = [super initWithFrame:frame]) {
     static const auto defaultProps = std::make_shared<const Model3dViewProps>();
     _props = defaultProps;
-
+    
 #if TARGET_OS_VISION
-    _view = [[Model3DView alloc] init];
+    _view = [[Model3DView alloc] initWithDelegate:self];
 #else
     _view = [[UIView alloc] init];
 #endif
-
+    
     self.contentView = _view;
   }
-
+  
   return self;
 }
 
@@ -52,7 +52,7 @@ using namespace facebook::react;
 {
   const auto &oldViewProps = *std::static_pointer_cast<Model3dViewProps const>(_props);
   const auto &newViewProps = *std::static_pointer_cast<Model3dViewProps const>(props);
- 
+  
 #if TARGET_OS_VISION
   if (oldViewProps.source != newViewProps.source) {
     _view.source = [NSString stringWithCString:newViewProps.source.c_str() encoding:kCFStringEncodingUTF8];
@@ -66,10 +66,18 @@ using namespace facebook::react;
   [super updateProps:props oldProps:oldProps];
 }
 
+#pragma mark - Model3dViewDelegate
+- (void)onLoad {
+  auto eventEmitter = std::static_pointer_cast<const Model3dViewEventEmitter>(_eventEmitter);
+  eventEmitter->onLoad({});
+}
+
+
 Class<RCTComponentViewProtocol> Model3dViewCls(void)
 {
-    return Model3dView.class;
+  return Model3dView.class;
 }
+
 
 @end
 #endif
