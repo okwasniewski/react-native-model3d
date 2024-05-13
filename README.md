@@ -10,6 +10,10 @@ Render 3D models in visionOS apps
 yarn add react-native-model3d
 ```
 
+## Supported platforms
+- visionOS
+- iOS (Coming soon)
+
 ## Usage
 
 ```js
