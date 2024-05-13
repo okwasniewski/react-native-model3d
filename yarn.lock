@@ -4256,7 +4256,7 @@ __metadata:
     prettier: "npm:2.8.8"
     react: "npm:18.2.0"
     react-native: "npm:0.73.3"
-    react-native-model3d: ../
+    react-native-model3d: "workspace:^"
     react-native-test-app: "npm:^3.7.2"
     react-test-renderer: "npm:18.2.0"
     typescript: "npm:5.0.4"
@@ -12144,17 +12144,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"react-native-model3d@file:../::locator=Example%40workspace%3Aexample":
-  version: 0.2.0
-  resolution: "react-native-model3d@file:../#../::hash=5e16b7&locator=Example%40workspace%3Aexample"
-  peerDependencies:
-    react: "*"
-    react-native: "*"
-  checksum: 10/1e382d2aabb6ca8036b1bb14e2713904a8525133f241888a0b360942fc5bdd32888eaea2de3ca47d2c465eb53a5cf71caa15e458bf86cedc15e143b8c8117ffc
-  languageName: node
-  linkType: hard
-
-"react-native-model3d@workspace:.":
+"react-native-model3d@workspace:., react-native-model3d@workspace:^":
   version: 0.0.0-use.local
   resolution: "react-native-model3d@workspace:."
   dependencies:
