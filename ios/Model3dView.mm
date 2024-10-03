@@ -58,8 +58,8 @@ using namespace facebook::react;
     _view.source = [NSString stringWithCString:newViewProps.source.c_str() encoding:kCFStringEncodingUTF8];
   }
 
-  if (oldViewProps.aspectRatio != newViewProps.aspectRatio) {
-    _view.aspectRatio = [NSString stringWithCString:toString(newViewProps.aspectRatio).c_str() encoding:kCFStringEncodingUTF8];
+  if (oldViewProps.modelAspectRatio != newViewProps.modelAspectRatio) {
+    _view.modelAspectRatio = [NSString stringWithCString:toString(newViewProps.modelAspectRatio).c_str() encoding:kCFStringEncodingUTF8];
   }
 #endif
 

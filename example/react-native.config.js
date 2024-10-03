@@ -1,30 +1,20 @@
 const path = require('path');
-
-const project = (() => {
-  try {
-    const { configureProjects } = require('react-native-test-app');
-    return configureProjects({
-      android: {
-        sourceDir: 'android',
-      },
-      ios: {
-        sourceDir: 'ios',
-      },
-      windows: {
-        sourceDir: 'windows',
-        solutionFile: 'windows/Example.sln',
-      },
-    });
-  } catch (_) {
-    return undefined;
-  }
-})();
+const pkg = require('../package.json');
+const { configureProjects } = require('react-native-test-app');
 
 module.exports = {
+  project: configureProjects({
+    android: {
+      sourceDir: 'android',
+    },
+    ios: {
+      sourceDir: 'ios',
+      automaticPodsInstallation: true,
+    },
+  }),
   dependencies: {
-    'react-native-model3d': {
+    [pkg.name]: {
       root: path.join(__dirname, '..'),
     },
   },
-  ...(project ? { project } : undefined),
 };

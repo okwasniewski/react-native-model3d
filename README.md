@@ -23,7 +23,7 @@ import { Model3dView } from "react-native-model3d";
 
 <Model3dView
   source="https://developer.apple.com/augmented-reality/quick-look/models/stratocaster/fender_stratocaster.usdz"
-  aspectRatio="fit"
+  modelAspectRatio="fit"
   onLoad={() => console.log('Model loaded')}
   style={styles.model3d}
 />
@@ -34,7 +34,7 @@ import { Model3dView } from "react-native-model3d";
 | Name   | Type   | Default | Description |
 | ------ | ------ | ------- | ----------- |
 | source | string |         | URL to the 3D model file |
-| aspectRatio | enum('fit', 'fill') | 'fit' | Aspect ratio of the view |
+| modelAspectRatio | enum('fit', 'fill') | 'fit' | Aspect ratio of the view |
 | onLoad | function | | Callback called when the model is loaded |
 
 

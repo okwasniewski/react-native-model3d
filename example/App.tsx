@@ -11,6 +11,7 @@ export default function App() {
         <Model3dView
           source="tv_retro"
           style={styles.box}
+          modelAspectRatio="fill"
           onLoad={() => {
             console.log('Model loaded from local file');
           }}
@@ -18,6 +19,7 @@ export default function App() {
         <Model3dView
           source="https://developer.apple.com/augmented-reality/quick-look/models/stratocaster/fender_stratocaster.usdz"
           style={styles.box}
+          modelAspectRatio="fit"
           onLoad={() => {
             console.log('Model loaded from URL');
           }}
