@@ -22,9 +22,9 @@ public typealias RCTDirectEventBlock = ([AnyHashable : Any]?) -> Void
     }
   }
 
-  @objc public var aspectRatio: NSString? = nil {
+  @objc public var modelAspectRatio: NSString? = nil {
     didSet {
-      props.aspectRatio = aspectRatio
+      props.modelAspectRatio = modelAspectRatio
     }
   }
   
@@ -61,5 +61,3 @@ public typealias RCTDirectEventBlock = ([AnyHashable : Any]?) -> Void
     fatalError("init(coder:) has not been implemented")
   }
 }
-
-

@@ -7,7 +7,7 @@ import type {
 
 interface NativeProps extends ViewProps {
   source?: string;
-  aspectRatio?: WithDefault<'fit' | 'fill', 'fit'>;
+  modelAspectRatio?: WithDefault<'fit' | 'fill', 'fit'>;
   onLoad?: DirectEventHandler<{}>;
 }
 

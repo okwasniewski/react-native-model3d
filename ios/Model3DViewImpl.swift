@@ -5,15 +5,15 @@ import React
 
 class Model3DViewProps: ObservableObject {
   @Published var url: String?
-  @Published var aspectRatio: NSString?
+  @Published var modelAspectRatio: NSString?
   @Published var onLoad: RCTDirectEventBlock?
 
   init(url: String?) {
     self.url = url
   }
 
-  func convertAspectRatio(aspectRatio: NSString?) -> ContentMode {
-    if aspectRatio == "fill" {
+  func convertModelAspectRatio(_ modelAspectRatio: NSString?) -> ContentMode {
+    if modelAspectRatio == "fill" {
       return .fill
     } else {
       return .fit
@@ -25,12 +25,13 @@ struct ModelView: View {
   var delegate: Model3dViewDelegate?
   @EnvironmentObject private var props: Model3DViewProps
 
+  #if os(visionOS)
   var body: some View {
     if let url = props.url {
         Model3D(maybeURL: url) { model in
           model
             .resizable()
-            .aspectRatio(contentMode: props.convertAspectRatio(aspectRatio: props.aspectRatio))
+            .aspectRatio(contentMode: props.convertModelAspectRatio(props.modelAspectRatio))
             .onAppear {
               // TODO: Find a way to call this only once
               delegate?.onLoad()
@@ -41,6 +42,11 @@ struct ModelView: View {
         }
     }
   }
+  #else
+  var body: some View {
+    VStack {}
+  }
+  #endif
 }
 
 #if os(visionOS)
